@@ -1,0 +1,12 @@
+metadata:
+  name: "Ensure VPC networks use custom-mode subnets (no auto-created subnets in every region)"
+  id: "CKV2_PORTFOLIO_1"
+  category: "NETWORKING"
+  guideline: "Auto-mode VPCs create a subnet in every region with no flow logs. Use custom mode and define only the subnets you need, with flow logs on."
+definition:
+  cond_type: "attribute"
+  resource_types:
+    - "google_compute_network"
+  attribute: "auto_create_subnetworks"
+  operator: "equals"
+  value: false

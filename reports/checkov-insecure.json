@@ -1,0 +1,667 @@
+{
+  "summary": {
+    "passed": 23,
+    "failed": 31,
+    "skipped": 0,
+    "parsing_errors": 0,
+    "resource_count": 9,
+    "checkov_version": "3.4.5"
+  },
+  "failed_checks": [
+    {
+      "check_id": "CKV_GCP_3",
+      "check_name": "Ensure Google compute firewall ingress does not allow unrestricted rdp access",
+      "resource": "google_compute_firewall.allow_admin",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        15,
+        25
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "allow/[0]/ports",
+          "source_ranges"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_2",
+      "check_name": "Ensure Google compute firewall ingress does not allow unrestricted ssh access",
+      "resource": "google_compute_firewall.allow_admin",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        15,
+        25
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "allow/[0]/ports",
+          "source_ranges"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_117",
+      "check_name": "Ensure basic roles are not used at project level.",
+      "resource": "google_project_iam_member.app_editor",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        33,
+        37
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "role"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_49",
+      "check_name": "Ensure roles do not impersonate or manage Service Accounts used at project level",
+      "resource": "google_project_iam_member.app_editor",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        33,
+        37
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "role"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_35",
+      "check_name": "Ensure 'Enable connecting to serial ports' is not enabled for VM Instance",
+      "resource": "google_compute_instance.web",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        45,
+        69
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "metadata/[0]/serial-port-enable"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_38",
+      "check_name": "Ensure VM disks for critical VMs are encrypted with Customer Supplied Encryption Keys (CSEK)",
+      "resource": "google_compute_instance.web",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        45,
+        69
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "boot_disk",
+          "boot_disk/[0]/disk_encryption_key_raw",
+          "boot_disk/[0]/kms_key_self_link"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_39",
+      "check_name": "Ensure Compute instances are launched with Shielded VM enabled",
+      "resource": "google_compute_instance.web",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        45,
+        69
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": []
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_32",
+      "check_name": "Ensure 'Block Project-wide SSH keys' is enabled for VM instances",
+      "resource": "google_compute_instance.web",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        45,
+        69
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "metadata/block-project-ssh-keys"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_40",
+      "check_name": "Ensure that Compute instances do not have public IP addresses",
+      "resource": "google_compute_instance.web",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        45,
+        69
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "network_interface/[0]/access_config"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_114",
+      "check_name": "Ensure public access prevention is enforced on Cloud Storage bucket",
+      "resource": "google_storage_bucket.exports",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        72,
+        77
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "public_access_prevention"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_29",
+      "check_name": "Ensure that Cloud Storage buckets have uniform bucket-level access enabled",
+      "resource": "google_storage_bucket.exports",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        72,
+        77
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "uniform_bucket_level_access"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_62",
+      "check_name": "Bucket should log access",
+      "resource": "google_storage_bucket.exports",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        72,
+        77
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "logging/[0]/log_bucket"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_78",
+      "check_name": "Ensure Cloud storage has versioning enabled",
+      "resource": "google_storage_bucket.exports",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        72,
+        77
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "versioning/[0]/enabled"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_28",
+      "check_name": "Ensure that Cloud Storage bucket is not anonymously or publicly accessible",
+      "resource": "google_storage_bucket_iam_member.public_read",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        79,
+        83
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "members",
+          "member"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_109",
+      "check_name": "Ensure the GCP PostgreSQL database log levels are set to ERROR or lower",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "database_version/[0]/POSTGRES",
+          "settings"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_108",
+      "check_name": "Ensure hostnames are logged for GCP PostgreSQL databases",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "database_version/[0]/POSTGRES",
+          "settings"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_6",
+      "check_name": "Ensure all Cloud SQL database instance requires all incoming connections to use SSL",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": []
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_53",
+      "check_name": "Ensure PostgreSQL database 'log_disconnections' flag is set to 'on'",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "database_version/[0]/POSTGRES",
+          "settings"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_79",
+      "check_name": "Ensure SQL database is using latest Major version",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "database_version"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_110",
+      "check_name": "Ensure pgAudit is enabled for your GCP PostgreSQL database",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "database_version/[0]/POSTGRES",
+          "settings"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_111",
+      "check_name": "Ensure GCP PostgreSQL logs SQL statements",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "database_version/[0]/POSTGRES",
+          "settings"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_54",
+      "check_name": "Ensure PostgreSQL database 'log_lock_waits' flag is set to 'on'",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "database_version/[0]/POSTGRES",
+          "settings"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_11",
+      "check_name": "Ensure that Cloud SQL database Instances are not open to the world",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "settings/[0]/ip_configuration/authorized_networks/[0]/value",
+          "settings/[0]/ip_configuration/authorized_networks/[0]/[0]/value"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_60",
+      "check_name": "Ensure Cloud SQL database does not have public IP",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "database_version/[0]/SQLSERVER",
+          "settings/[0]/ip_configuration/[0]/ipv4_enabled"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_51",
+      "check_name": "Ensure PostgreSQL database 'log_checkpoints' flag is set to 'on'",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "database_version/[0]/POSTGRES",
+          "settings"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_52",
+      "check_name": "Ensure PostgreSQL database 'log_connections' flag is set to 'on'",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "database_version/[0]/POSTGRES",
+          "settings"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV_GCP_14",
+      "check_name": "Ensure all Cloud SQL database instance have backup configuration enabled",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "evaluated_keys": [
+          "settings/[0]/backup_configuration/[0]/enabled"
+        ]
+      },
+      "guideline": null
+    },
+    {
+      "check_id": "CKV2_PORTFOLIO_1",
+      "check_name": "Ensure VPC networks use custom-mode subnets (no auto-created subnets in every region)",
+      "resource": "google_compute_network.vpc",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        9,
+        12
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "entity": {
+          "google_compute_network": {
+            "vpc": {
+              "__end_line__": 12,
+              "__start_line__": 9,
+              "auto_create_subnetworks": [
+                true
+              ],
+              "name": [
+                "portal-vpc"
+              ],
+              "__address__": "google_compute_network.vpc"
+            }
+          }
+        },
+        "evaluated_keys": [
+          "auto_create_subnetworks"
+        ]
+      },
+      "guideline": "Auto-mode VPCs create a subnet in every region with no flow logs. Use custom mode and define only the subnets you need, with flow logs on."
+    },
+    {
+      "check_id": "CKV2_PORTFOLIO_3",
+      "check_name": "Ensure VPC firewall rules have logging enabled",
+      "resource": "google_compute_firewall.allow_admin",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        15,
+        25
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "entity": {
+          "google_compute_firewall": {
+            "allow_admin": {
+              "__end_line__": 25,
+              "__start_line__": 15,
+              "allow": [
+                {
+                  "ports": [
+                    [
+                      "22",
+                      "3389"
+                    ]
+                  ],
+                  "protocol": [
+                    "tcp"
+                  ]
+                }
+              ],
+              "direction": [
+                "INGRESS"
+              ],
+              "name": [
+                "allow-admin-from-anywhere"
+              ],
+              "network": [
+                "google_compute_network.vpc.id"
+              ],
+              "source_ranges": [
+                [
+                  "0.0.0.0/0"
+                ]
+              ],
+              "__address__": "google_compute_firewall.allow_admin"
+            }
+          }
+        },
+        "evaluated_keys": [
+          "log_config/metadata"
+        ]
+      },
+      "guideline": "Firewall rule logging records which connections a rule allowed or denied, which you need to investigate incidents."
+    },
+    {
+      "check_id": "CKV2_PORTFOLIO_2",
+      "check_name": "Ensure service account keys are not created (use attached identities or Workload Identity Federation)",
+      "resource": "google_service_account_key.app_key",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        40,
+        42
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "entity": {
+          "google_service_account_key": {
+            "app_key": {
+              "__end_line__": 42,
+              "__start_line__": 40,
+              "service_account_id": [
+                "google_service_account.app.name"
+              ],
+              "__address__": "google_service_account_key.app_key"
+            }
+          }
+        },
+        "evaluated_keys": [
+          "service_account_id"
+        ]
+      },
+      "guideline": "Downloadable service account keys are long-lived credentials that leak easily. Attach the service account to the workload instead."
+    },
+    {
+      "check_id": "CKV2_GCP_13",
+      "check_name": "Ensure PostgreSQL database flag 'log_duration' is set to 'on'",
+      "resource": "google_sql_database_instance.db",
+      "repo_file_path": "/insecure/main.tf",
+      "file_line_range": [
+        86,
+        107
+      ],
+      "check_result": {
+        "result": "FAILED",
+        "entity": {
+          "google_sql_database_instance": {
+            "db": {
+              "__end_line__": 107,
+              "__start_line__": 86,
+              "database_version": [
+                "POSTGRES_15"
+              ],
+              "deletion_protection": [
+                false
+              ],
+              "name": [
+                "portal-db"
+              ],
+              "region": [
+                "europe-west3"
+              ],
+              "settings": [
+                {
+                  "backup_configuration": [
+                    {
+                      "enabled": [
+                        false
+                      ]
+                    }
+                  ],
+                  "ip_configuration": [
+                    {
+                      "authorized_networks": [
+                        {
+                          "name": [
+                            "anywhere"
+                          ],
+                          "value": [
+                            "0.0.0.0/0"
+                          ]
+                        }
+                      ],
+                      "ipv4_enabled": [
+                        true
+                      ]
+                    }
+                  ],
+                  "tier": [
+                    "db-f1-micro"
+                  ]
+                }
+              ],
+              "__address__": "google_sql_database_instance.db"
+            }
+          }
+        },
+        "evaluated_keys": [
+          "database_version",
+          "settings/database_flags[?(@/name == log_duration & @/value == on)]"
+        ]
+      },
+      "guideline": null
+    }
+  ],
+  "skipped_checks": []
+}

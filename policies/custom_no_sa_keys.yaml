@@ -1,0 +1,11 @@
+metadata:
+  name: "Ensure service account keys are not created (use attached identities or Workload Identity Federation)"
+  id: "CKV2_PORTFOLIO_2"
+  category: "IAM"
+  guideline: "Downloadable service account keys are long-lived credentials that leak easily. Attach the service account to the workload instead."
+definition:
+  cond_type: "attribute"
+  resource_types:
+    - "google_service_account_key"
+  attribute: "service_account_id"
+  operator: "not_exists"

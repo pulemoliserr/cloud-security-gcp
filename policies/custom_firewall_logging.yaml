@@ -1,0 +1,11 @@
+metadata:
+  name: "Ensure VPC firewall rules have logging enabled"
+  id: "CKV2_PORTFOLIO_3"
+  category: "LOGGING"
+  guideline: "Firewall rule logging records which connections a rule allowed or denied, which you need to investigate incidents."
+definition:
+  cond_type: "attribute"
+  resource_types:
+    - "google_compute_firewall"
+  attribute: "log_config.metadata"
+  operator: "exists"
