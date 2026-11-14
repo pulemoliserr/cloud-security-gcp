@@ -1,5 +1,9 @@
 # Cloud Security: Hardening a Misconfigured Google Cloud Deployment
 
+[![IaC security scan](https://github.com/pulemoliserr/cloud-security-gcp/actions/workflows/iac-security.yml/badge.svg)](https://github.com/pulemoliserr/cloud-security-gcp/actions/workflows/iac-security.yml)
+
+Part of my cybersecurity portfolio: [project write-up](https://pulemolise.net/cybersecurity/cloud-security-gcp/) · [pulemolise.net](https://pulemolise.net)
+
 Infrastructure-as-code project. I wrote a small **"customer portal" on Google Cloud** (web VM, Cloud SQL database, storage bucket) twice: first with **eight common misconfigurations**, then **hardened**. Both versions are scanned with **Checkov** plus three **custom policies** I wrote, and a CI pipeline blocks any change that makes the secure version fail.
 
 | | Insecure | Secure |
@@ -68,7 +72,7 @@ pip install checkov
 python scripts/scan.py        # writes reports/, exits 1 if the secure config fails anything
 ```
 
-**CI** (`.github/workflows/iac-security.yml`) runs `terraform fmt`, `terraform validate` and the Checkov scan on every push and uploads the reports. Publish this folder as **its own GitHub repository** so the workflow runs from the repository root.
+**CI** (`.github/workflows/iac-security.yml`) runs `terraform fmt`, `terraform validate` and the Checkov scan on every push and uploads the reports.
 
 ## Deploying it (optional, costs money)
 

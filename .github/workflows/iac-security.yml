@@ -1,0 +1,43 @@
+name: IaC security scan
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dir: [insecure, secure]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - name: Format check
+        run: terraform fmt -check -recursive
+        working-directory: ${{ matrix.dir }}
+      - name: Validate (no cloud credentials needed)
+        run: |
+          terraform init -backend=false -input=false
+          terraform validate
+        working-directory: ${{ matrix.dir }}
+
+  checkov:
+    needs: terraform
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Checkov
+        run: pip install checkov
+      # Fails the build if the hardened config has any failed check.
+      # The insecure config is scanned too, for the before/after report.
+      - name: Scan and build report
+        run: python scripts/scan.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: checkov-reports
+          path: reports/
